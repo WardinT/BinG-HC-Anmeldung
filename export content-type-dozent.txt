@@ -13,18 +13,18 @@ function MY_MODULE_install() {
  * Implements hook_uninstall().
  */
 function MY_MODULE_uninstall() {
-  field_attach_delete_bundle('node', 'programmpunkt');
-  node_type_delete('programmpunkt');
+  field_attach_delete_bundle('node', 'dozent');
+  node_type_delete('dozent');
 }
 
 /**
  * Set up the content type.
  */
 function MY_MODULE_create_type() {
-  // Programmpunkt content type
+  // Dozent content type
 $bundle = array(
-  'type' => 'programmpunkt',
-  'name' => 'Programmpunkt',
+  'type' => 'dozent',
+  'name' => 'Dozent',
   'base' => 'node_content',
   'description' => '',
   'custom' => '1',
@@ -54,30 +54,16 @@ if (field_info_field($field['field_name']) === NULL) {
   field_create_field($field);
 }
 
-// field_dozent field
+// field_name field
 $field = array(
   'settings' => array(
-    'target_type' => 'node',
-    'handler' => 'base',
-    'handler_settings' => array(
-      'target_bundles' => array(
-        'dozent' => 'dozent',
-      ),
-      'sort' => array(
-        'type' => 'property',
-        'property' => 'title',
-        'direction' => 'ASC',
-      ),
-      'behaviors' => array(
-        'views-select-list' => array(
-          'status' => 0,
-        ),
-      ),
+    'hide_blank_items' => true,
+    'entity_translation_sync' => array(
+      0 => 'id',
     ),
-    'entity_translation_sync' => false,
   ),
-  'field_name' => 'field_dozent',
-  'type' => 'entityreference',
+  'field_name' => 'field_name',
+  'type' => 'multifield',
   'cardinality' => '1',
 );
 if (field_info_field($field['field_name']) === NULL) {
@@ -93,77 +79,78 @@ if (field_info_field($field['field_name']) === NULL) {
 function MY_MODULE_create_instances() {
 // title_field instance
 $instance = array(
-  'label' => 'Titel',
+  'label' => 'Name',
   'description' => '',
-  'required' => true,
+  'required' => 1,
   'settings' => array(
-    'text_processing' => 0,
+    'text_processing' => '0',
     'hide_label' => array(
-      'page' => false,
-      'entity' => false,
+      'page' => 0,
+      'entity' => 0,
     ),
     'user_register_form' => false,
     'entity_translation_sync' => false,
   ),
   'widget' => array(
-    'weight' => '0',
+    'weight' => '-5',
     'type' => 'text_textfield',
-    'settings' => array(
-      'size' => 60,
-    ),
     'module' => 'text',
+    'active' => 1,
+    'settings' => array(
+      'size' => '60',
+    ),
+  ),
+  'display' => array(
+    'default' => array(
+      'type' => 'hidden',
+      'label' => 'above',
+      'settings' => array(
+      ),
+      'weight' => 2,
+    ),
+  ),
+  'default_value' => NULL,
+  'field_name' => 'title_field',
+  'entity_type' => 'node',
+  'bundle' => 'dozent',
+  'deleted' => '0',
+);
+if (field_info_instance('node', 'title_field', 'dozent') === NULL) {
+  field_create_instance($instance);
+}
+// field_name instance
+$instance = array(
+  'label' => 'Name',
+  'widget' => array(
+    'type' => 'multifield_default',
+    'weight' => '6',
+    'settings' => array(
+    ),
+    'module' => 'multifield',
+  ),
+  'settings' => array(
+    'user_register_form' => false,
+    'entity_translation_sync' => false,
   ),
   'display' => array(
     'default' => array(
       'label' => 'above',
-      'type' => 'hidden',
-      'weight' => '1',
+      'type' => 'multifield_default',
       'settings' => array(
+        'view_mode' => 'default',
       ),
-    ),
-  ),
-  'field_name' => 'title_field',
-  'entity_type' => 'node',
-  'bundle' => 'programmpunkt',
-  'deleted' => '0',
-);
-if (field_info_instance('node', 'title_field', 'programmpunkt') === NULL) {
-  field_create_instance($instance);
-}
-// field_dozent instance
-$instance = array(
-  'label' => 'Dozent',
-  'widget' => array(
-    'type' => 'options_select',
-    'weight' => '1',
-    'settings' => array(
-    ),
-    'module' => 'options',
-  ),
-  'settings' => array(
-    'user_register_form' => false,
-    'entity_translation_sync' => false,
-  ),
-  'display' => array(
-    'default' => array(
-      'label' => 'inline',
-      'type' => 'entityreference_label',
-      'weight' => '1',
-      'settings' => array(
-        'link' => false,
-        'bypass_access' => false,
-      ),
-      'module' => 'entityreference',
+      'module' => 'multifield',
+      'weight' => 3,
     ),
   ),
   'required' => false,
   'description' => '',
-  'field_name' => 'field_dozent',
+  'field_name' => 'field_name',
   'entity_type' => 'node',
-  'bundle' => 'programmpunkt',
+  'bundle' => 'dozent',
   'deleted' => '0',
 );
-if (field_info_instance('node', 'field_dozent', 'programmpunkt') === NULL) {
+if (field_info_instance('node', 'field_name', 'dozent') === NULL) {
   field_create_instance($instance);
 }
 

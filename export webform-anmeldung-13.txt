@@ -1,6 +1,6 @@
 ﻿$webform = array (
   'nid' => '13',
-  'next_serial' => '23',
+  'next_serial' => '24',
   'confirmation' => '',
   'confirmation_format' => 'filtered_html',
   'redirect_url' => '<confirmation>',
@@ -3146,7 +3146,7 @@ return(t("Registration will be accepted for people being born @grenze or later."
         'private' => 0,
       ),
       'required' => '0',
-      'weight' => '20',
+      'weight' => '19',
       'page_num' => 2,
     ),
     18 => 
@@ -3168,7 +3168,7 @@ return(t("Registration will be accepted for people being born @grenze or later."
         'display_on' => 'form',
       ),
       'required' => '0',
-      'weight' => '21',
+      'weight' => '20',
       'page_num' => 2,
     ),
     19 => 
@@ -3182,7 +3182,7 @@ return(t("Registration will be accepted for people being born @grenze or later."
       'value' => '0',
       'extra' => 
       array (
-        'description' => 'Auswahl des Kurses A2 wählt automatisch Kurs B3 auf der nächsten Seite (nur zur Demonstration).',
+        'description' => 'Auswahl des Kurses A2 wählt automatisch Kurs B2 auf der nächsten Seite (nur zur Demonstration).',
         'items' => '0|keine Auswahl
 A1|<strong>A1 Joe Cerutti: Score (Sheet Music) Study & Interpretation.</strong></br>&#160;&#160;&#160;&#160;&#160;Kategorie: Music</br>&#160;&#160;&#160;&#160;&#160;Zielgruppe: Chorleiter/Stimmführer</br>&#160;&#160;&#160;&#160;&#160;Kurssprache: Englisch
 A2|<strong>A2 David McEachern: Performance.</strong></br>&#160;&#160;&#160;&#160;&#160;Kategorie: Performance</br>&#160;&#160;&#160;&#160;&#160;Zielgruppe: Alle</br>&#160;&#160;&#160;&#160;&#160;Kurssprache: Englisch
@@ -3208,7 +3208,7 @@ A8|<strong>A8 Lucas Bitzer: Zeigt mir Eure Obertöne!</strong></br>&#160;&#160;&
         'analysis' => true,
       ),
       'required' => '1',
-      'weight' => '22',
+      'weight' => '21',
       'page_num' => 2,
     ),
     30 => 
@@ -3228,7 +3228,7 @@ A8|<strong>A8 Lucas Bitzer: Zeigt mir Eure Obertöne!</strong></br>&#160;&#160;&
         'display_on' => 'form',
       ),
       'required' => '0',
-      'weight' => '23',
+      'weight' => '22',
       'page_num' => 2,
     ),
     20 => 
@@ -3247,18 +3247,20 @@ A8|<strong>A8 Lucas Bitzer: Zeigt mir Eure Obertöne!</strong></br>&#160;&#160;&
         'private' => 0,
       ),
       'required' => '0',
-      'weight' => '24',
+      'weight' => '23',
       'page_num' => 3,
     ),
-    21 => 
+    34 => 
     array (
       'nid' => 13,
-      'cid' => '21',
+      'cid' => '34',
       'pid' => '0',
       'form_key' => 'einleitung_b',
       'name' => 'Einleitung B',
       'type' => 'markup',
-      'value' => '<p>Hier steht die Beschreibung der Kurse im Block B.</p>
+      'value' => '<p>&nbsp;</p>
+
+<p><strong>Session B:</strong> Sonntag und Montag 14:25-15:15&nbsp;Uhr. Kurse für Harmony College.</p>
 ',
       'extra' => 
       array (
@@ -3267,7 +3269,107 @@ A8|<strong>A8 Lucas Bitzer: Zeigt mir Eure Obertöne!</strong></br>&#160;&#160;&
         'display_on' => 'form',
       ),
       'required' => '0',
+      'weight' => '24',
+      'page_num' => 3,
+    ),
+    32 => 
+    array (
+      'nid' => 13,
+      'cid' => '32',
+      'pid' => '0',
+      'form_key' => 'beschreibung_b1',
+      'name' => 'Beschreibung B1',
+      'type' => 'node',
+      'value' => 'B1: Sound Management [id: 128]',
+      'extra' => 
+      array (
+        'nid' => '128',
+        'title_display' => 'none',
+        'description_above' => 0,
+        'private' => 0,
+        'wrapper_classes' => '',
+        'css_classes' => '',
+        'title' => 0,
+        'view_mode' => 'full',
+      ),
+      'required' => '0',
       'weight' => '25',
+      'private' => 0,
+      'page_num' => 3,
+    ),
+    33 => 
+    array (
+      'nid' => 13,
+      'cid' => '33',
+      'pid' => '0',
+      'form_key' => 'beschreibung_b2',
+      'name' => 'Beschreibung B2',
+      'type' => 'node',
+      'value' => 'B2: Be Real [id: 129]',
+      'extra' => 
+      array (
+        'nid' => '129',
+        'title_display' => 'none',
+        'description_above' => 0,
+        'private' => 0,
+        'wrapper_classes' => '',
+        'css_classes' => '',
+        'title' => 0,
+        'view_mode' => 'full',
+      ),
+      'required' => '0',
+      'weight' => '26',
+      'private' => 0,
+      'page_num' => 3,
+    ),
+    35 => 
+    array (
+      'nid' => 13,
+      'cid' => '35',
+      'pid' => '0',
+      'form_key' => 'beschreibung_b3',
+      'name' => 'Beschreibung B3',
+      'type' => 'node',
+      'value' => 'B3: Warm Up Techniques [id: 130]',
+      'extra' => 
+      array (
+        'nid' => '130',
+        'title_display' => 'none',
+        'description_above' => 0,
+        'private' => 0,
+        'wrapper_classes' => '',
+        'css_classes' => '',
+        'title' => 0,
+        'view_mode' => 'full',
+      ),
+      'required' => '0',
+      'weight' => '27',
+      'private' => 0,
+      'page_num' => 3,
+    ),
+    36 => 
+    array (
+      'nid' => 13,
+      'cid' => '36',
+      'pid' => '0',
+      'form_key' => 'beschreibung_b4',
+      'name' => 'Beschreibung B4',
+      'type' => 'node',
+      'value' => 'B4: Vocal Pedagogy [id: 131]',
+      'extra' => 
+      array (
+        'nid' => '131',
+        'title_display' => 'none',
+        'description_above' => 0,
+        'private' => 0,
+        'wrapper_classes' => '',
+        'css_classes' => '',
+        'title' => 0,
+        'view_mode' => 'full',
+      ),
+      'required' => '0',
+      'weight' => '28',
+      'private' => 0,
       'page_num' => 3,
     ),
     22 => 
@@ -3276,17 +3378,17 @@ A8|<strong>A8 Lucas Bitzer: Zeigt mir Eure Obertöne!</strong></br>&#160;&#160;&
       'cid' => '22',
       'pid' => '0',
       'form_key' => 'kurse_b',
-      'name' => 'Kurse B',
+      'name' => 'Kursauswahl für Session B',
       'type' => 'select',
-      'value' => 'B1',
+      'value' => '',
       'extra' => 
       array (
         'items' => 'B1: Sound Management|B1: Sound Management
 B2: Be Real|B2: Be Real
 B3: Warm Up Techniques|B3: Warm Up Techniques
-B4: Vocal Techniques|B4: Vocal Techniques
+B4: Vocal Pedagogy|B4: Vocal Pedagogy
 ',
-        'options_source' => 'kurse-webform_select_1',
+        'options_source' => 'kurse-webform_select_2',
         'multiple' => 0,
         'title_display' => 'before',
         'description_above' => 0,
@@ -3300,84 +3402,6 @@ B4: Vocal Techniques|B4: Vocal Techniques
         'other_text' => 'Weitere...',
         'description' => '',
         'custom_keys' => false,
-        'analysis' => true,
-      ),
-      'required' => '1',
-      'weight' => '26',
-      'page_num' => 3,
-    ),
-    23 => 
-    array (
-      'nid' => 13,
-      'cid' => '23',
-      'pid' => '0',
-      'form_key' => 'kurs_b3',
-      'name' => 'Kurs B3',
-      'type' => 'markup',
-      'value' => '<?php
-echo "<p><strong>Kurse B</strong></p>";
-echo "<p><input type=\'radio\' checked=\'checked\'> B3: Warm Up Techniques</p>";
-?>
-',
-      'extra' => 
-      array (
-        'format' => 'php_code',
-        'private' => 0,
-        'display_on' => 'form',
-      ),
-      'required' => '0',
-      'weight' => '27',
-      'page_num' => 3,
-    ),
-    24 => 
-    array (
-      'nid' => 13,
-      'cid' => '24',
-      'pid' => '0',
-      'form_key' => 'einleitung_c',
-      'name' => 'Einleitung C',
-      'type' => 'markup',
-      'value' => '<p>&nbsp;</p>
-
-<p>Hier steht die Beschreibung der Kurse im Block C.</p>
-',
-      'extra' => 
-      array (
-        'format' => 'full_html',
-        'private' => 0,
-        'display_on' => 'form',
-      ),
-      'required' => '0',
-      'weight' => '28',
-      'page_num' => 3,
-    ),
-    25 => 
-    array (
-      'nid' => 13,
-      'cid' => '25',
-      'pid' => '0',
-      'form_key' => 'kurse_c',
-      'name' => 'Kurse C',
-      'type' => 'select',
-      'value' => '',
-      'extra' => 
-      array (
-        'items' => 'C1|C1
-C2|C2',
-        'multiple' => 0,
-        'title_display' => 'before',
-        'description_above' => 0,
-        'private' => 0,
-        'wrapper_classes' => '',
-        'css_classes' => '',
-        'aslist' => 0,
-        'empty_option' => '',
-        'optrand' => 0,
-        'other_option' => NULL,
-        'other_text' => 'Weitere...',
-        'description' => '',
-        'custom_keys' => false,
-        'options_source' => '',
         'analysis' => true,
       ),
       'required' => '1',
@@ -3389,12 +3413,10 @@ C2|C2',
       'nid' => 13,
       'cid' => '26',
       'pid' => '0',
-      'form_key' => 'keine_auswahl_c',
-      'name' => 'Keine Auswahl C',
+      'form_key' => 'keine_auswahl_b',
+      'name' => 'Keine Auswahl B',
       'type' => 'markup',
-      'value' => '<p><strong>Kurse C</strong></p>
-
-<p>Für Teilnehmer am Youth Camp ist hier keine Auswahl erforderlich.</p>
+      'value' => '<p>Für Teilnehmer am Quartett College und am Youth Camp ist hier keine Auswahl erforderlich.</p>
 ',
       'extra' => 
       array (
@@ -3403,7 +3425,7 @@ C2|C2',
         'display_on' => 'form',
       ),
       'required' => '0',
-      'weight' => '30',
+      'weight' => '33',
       'page_num' => 3,
     ),
   ),
@@ -3414,7 +3436,7 @@ C2|C2',
       'nid' => '13',
       'rgid' => '0',
       'andor' => 'or',
-      'weight' => '-1',
+      'weight' => '-8',
       'rules' => 
       array (
         0 => 
@@ -3453,12 +3475,111 @@ C2|C2',
         ),
       ),
     ),
+    7 => 
+    array (
+      'nid' => '13',
+      'rgid' => '7',
+      'andor' => 'or',
+      'weight' => '-7',
+      'rules' => 
+      array (
+        0 => 
+        array (
+          'nid' => '13',
+          'rgid' => '7',
+          'rid' => '0',
+          'source_type' => 'component',
+          'source' => '3',
+          'operator' => 'equal',
+          'value' => 'QC',
+        ),
+        3 => 
+        array (
+          'nid' => '13',
+          'rgid' => '7',
+          'rid' => '3',
+          'source_type' => 'component',
+          'source' => '3',
+          'operator' => 'equal',
+          'value' => 'YC',
+        ),
+      ),
+      'actions' => 
+      array (
+        1 => 
+        array (
+          'nid' => '13',
+          'rgid' => '7',
+          'aid' => '1',
+          'target_type' => 'component',
+          'target' => '32',
+          'invert' => '1',
+          'action' => 'show',
+          'argument' => '',
+        ),
+        2 => 
+        array (
+          'nid' => '13',
+          'rgid' => '7',
+          'aid' => '2',
+          'target_type' => 'component',
+          'target' => '33',
+          'invert' => '1',
+          'action' => 'show',
+          'argument' => '',
+        ),
+        3 => 
+        array (
+          'nid' => '13',
+          'rgid' => '7',
+          'aid' => '3',
+          'target_type' => 'component',
+          'target' => '35',
+          'invert' => '1',
+          'action' => 'show',
+          'argument' => '',
+        ),
+        4 => 
+        array (
+          'nid' => '13',
+          'rgid' => '7',
+          'aid' => '4',
+          'target_type' => 'component',
+          'target' => '36',
+          'invert' => '1',
+          'action' => 'show',
+          'argument' => '',
+        ),
+        5 => 
+        array (
+          'nid' => '13',
+          'rgid' => '7',
+          'aid' => '5',
+          'target_type' => 'component',
+          'target' => '22',
+          'invert' => '1',
+          'action' => 'show',
+          'argument' => '',
+        ),
+        6 => 
+        array (
+          'nid' => '13',
+          'rgid' => '7',
+          'aid' => '6',
+          'target_type' => 'component',
+          'target' => '26',
+          'invert' => '0',
+          'action' => 'show',
+          'argument' => '',
+        ),
+      ),
+    ),
     1 => 
     array (
       'nid' => '13',
       'rgid' => '1',
       'andor' => NULL,
-      'weight' => '0',
+      'weight' => '-6',
       'rules' => 
       array (
         0 => 
@@ -3514,7 +3635,7 @@ C2|C2',
       'nid' => '13',
       'rgid' => '2',
       'andor' => 'and',
-      'weight' => '1',
+      'weight' => '-5',
       'rules' => 
       array (
         0 => 
@@ -3580,7 +3701,7 @@ C2|C2',
       'nid' => '13',
       'rgid' => '3',
       'andor' => 'and',
-      'weight' => '2',
+      'weight' => '-4',
       'rules' => 
       array (
         0 => 
@@ -3701,7 +3822,7 @@ C2|C2',
       'nid' => '13',
       'rgid' => '4',
       'andor' => NULL,
-      'weight' => '3',
+      'weight' => '-3',
       'rules' => 
       array (
         0 => 
@@ -3779,7 +3900,7 @@ C2|C2',
       'nid' => '13',
       'rgid' => '5',
       'andor' => 'or',
-      'weight' => '4',
+      'weight' => '-2',
       'rules' => 
       array (
         0 => 
@@ -3823,7 +3944,7 @@ C2|C2',
       'nid' => '13',
       'rgid' => '6',
       'andor' => NULL,
-      'weight' => '5',
+      'weight' => '-1',
       'rules' => 
       array (
         0 => 
@@ -3839,28 +3960,6 @@ C2|C2',
       ),
       'actions' => 
       array (
-        0 => 
-        array (
-          'nid' => '13',
-          'rgid' => '6',
-          'aid' => '0',
-          'target_type' => 'component',
-          'target' => '20',
-          'invert' => '1',
-          'action' => 'show',
-          'argument' => '',
-        ),
-        1 => 
-        array (
-          'nid' => '13',
-          'rgid' => '6',
-          'aid' => '1',
-          'target_type' => 'component',
-          'target' => '23',
-          'invert' => '0',
-          'action' => 'show',
-          'argument' => '',
-        ),
         2 => 
         array (
           'nid' => '13',
@@ -3870,7 +3969,7 @@ C2|C2',
           'target' => '22',
           'invert' => '0',
           'action' => 'set',
-          'argument' => 'B3: Warm Up Techniques',
+          'argument' => 'B2: Be Real',
         ),
       ),
     ),

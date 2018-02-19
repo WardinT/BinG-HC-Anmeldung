@@ -40,28 +40,11 @@ node_add_body_field($bundle);
  * Create the fields
  */
 function MY_MODULE_create_fields() {
-// field_image field
-$field = array(
-  'settings' => array(
-    'uri_scheme' => 'public',
-    'default_image' => 0,
-    'entity_translation_sync' => array(
-      0 => 'fid',
-    ),
-  ),
-  'field_name' => 'field_image',
-  'type' => 'image',
-  'cardinality' => '-1',
-);
-if (field_info_field($field['field_name']) === NULL) {
-  field_create_field($field);
-}
-
 // title_field field
 $field = array(
   'settings' => array(
-    'entity_translation_sync' => false,
     'max_length' => 255,
+    'entity_translation_sync' => false,
   ),
   'field_name' => 'title_field',
   'type' => 'text',
@@ -249,6 +232,23 @@ if (field_info_field($field['field_name']) === NULL) {
   field_create_field($field);
 }
 
+// field_image field
+$field = array(
+  'settings' => array(
+    'uri_scheme' => 'public',
+    'default_image' => 0,
+    'entity_translation_sync' => array(
+      0 => 'fid',
+    ),
+  ),
+  'field_name' => 'field_image',
+  'type' => 'image',
+  'cardinality' => '-1',
+);
+if (field_info_field($field['field_name']) === NULL) {
+  field_create_field($field);
+}
+
 // field_anlagen field
 $field = array(
   'settings' => array(
@@ -304,68 +304,6 @@ if (field_info_field($field['field_name']) === NULL) {
  * Create the field instances
  */
 function MY_MODULE_create_instances() {
-// field_image instance
-$instance = array(
-  'label' => 'Bild(er)',
-  'widget' => array(
-    'weight' => '4',
-    'type' => 'media_generic',
-    'module' => 'media',
-    'active' => 1,
-    'settings' => array(
-      'browser_plugins' => array(
-        'upload' => 0,
-        'media_default--media_browser_1' => 0,
-        'media_default--media_browser_my_files' => 0,
-      ),
-      'allowed_types' => array(
-        'image' => 'image',
-        'document' => 0,
-        'video' => 0,
-        'audio' => 0,
-      ),
-      'allowed_schemes' => array(
-        'public' => 'public',
-        'private' => 0,
-      ),
-    ),
-  ),
-  'settings' => array(
-    'file_directory' => '',
-    'file_extensions' => 'png gif jpg jpeg',
-    'max_filesize' => '',
-    'max_resolution' => '',
-    'min_resolution' => '',
-    'alt_field' => 0,
-    'title_field' => 0,
-    'default_image' => 0,
-    'entity_translation_sync' => 0,
-    'user_register_form' => false,
-  ),
-  'display' => array(
-    'default' => array(
-      'label' => 'above',
-      'type' => 'image',
-      'weight' => '1',
-      'settings' => array(
-        'image_style' => '',
-        'image_link' => '',
-      ),
-      'module' => 'image',
-    ),
-  ),
-  'required' => 0,
-  'description' => '',
-  'default_value' => array(
-  ),
-  'field_name' => 'field_image',
-  'entity_type' => 'node',
-  'bundle' => 'anmeldung',
-  'deleted' => '0',
-);
-if (field_info_instance('node', 'field_image', 'anmeldung') === NULL) {
-  field_create_instance($instance);
-}
 // title_field instance
 $instance = array(
   'default_value' => NULL,
@@ -960,6 +898,68 @@ $instance = array(
 if (field_info_instance('node', 'field_veranstaltung', 'anmeldung') === NULL) {
   field_create_instance($instance);
 }
+// field_image instance
+$instance = array(
+  'label' => 'Bild(er)',
+  'widget' => array(
+    'weight' => '4',
+    'type' => 'media_generic',
+    'module' => 'media',
+    'active' => 1,
+    'settings' => array(
+      'browser_plugins' => array(
+        'upload' => 0,
+        'media_default--media_browser_1' => 0,
+        'media_default--media_browser_my_files' => 0,
+      ),
+      'allowed_types' => array(
+        'image' => 'image',
+        'document' => 0,
+        'video' => 0,
+        'audio' => 0,
+      ),
+      'allowed_schemes' => array(
+        'public' => 'public',
+        'private' => 0,
+      ),
+    ),
+  ),
+  'settings' => array(
+    'file_directory' => '',
+    'file_extensions' => 'png gif jpg jpeg',
+    'max_filesize' => '',
+    'max_resolution' => '',
+    'min_resolution' => '',
+    'alt_field' => 0,
+    'title_field' => 0,
+    'default_image' => 0,
+    'entity_translation_sync' => 0,
+    'user_register_form' => false,
+  ),
+  'display' => array(
+    'default' => array(
+      'label' => 'above',
+      'type' => 'image',
+      'weight' => '1',
+      'settings' => array(
+        'image_style' => '',
+        'image_link' => '',
+      ),
+      'module' => 'image',
+    ),
+  ),
+  'required' => 0,
+  'description' => '',
+  'default_value' => array(
+  ),
+  'field_name' => 'field_image',
+  'entity_type' => 'node',
+  'bundle' => 'anmeldung',
+  'deleted' => '0',
+);
+if (field_info_instance('node', 'field_image', 'anmeldung') === NULL) {
+  field_create_instance($instance);
+}
 // field_anlagen instance
 $instance = array(
   'label' => 'Anlage(n)',
@@ -1039,12 +1039,12 @@ $instance = array(
     'default' => array(
       'label' => 'above',
       'type' => 'entityreference_label',
+      'weight' => '21',
       'settings' => array(
         'link' => false,
         'bypass_access' => false,
       ),
       'module' => 'entityreference',
-      'weight' => 21,
     ),
   ),
   'required' => 1,

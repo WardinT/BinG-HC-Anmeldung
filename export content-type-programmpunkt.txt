@@ -1,0 +1,104 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function MY_MODULE_install() {
+  MY_MODULE_create_type();
+  MY_MODULE_create_fields();
+  MY_MODULE_create_instances();
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function MY_MODULE_uninstall() {
+  field_attach_delete_bundle('node', 'programmpunkt');
+  node_type_delete('programmpunkt');
+}
+
+/**
+ * Set up the content type.
+ */
+function MY_MODULE_create_type() {
+  // Programmpunkt content type
+$bundle = array(
+  'type' => 'programmpunkt',
+  'name' => 'Programmpunkt',
+  'base' => 'node_content',
+  'description' => '',
+  'custom' => '1',
+);
+
+$bundle = node_type_set_defaults($bundle);
+node_type_save($bundle);
+node_add_body_field($bundle);
+
+}
+
+/**
+ * Create the fields
+ */
+function MY_MODULE_create_fields() {
+// title_field field
+$field = array(
+  'settings' => array(
+    'entity_translation_sync' => false,
+    'max_length' => 255,
+  ),
+  'field_name' => 'title_field',
+  'type' => 'text',
+  'cardinality' => '1',
+);
+if (field_info_field($field['field_name']) === NULL) {
+  field_create_field($field);
+}
+
+
+}
+
+/**
+ * Create the field instances
+ */
+function MY_MODULE_create_instances() {
+// title_field instance
+$instance = array(
+  'label' => 'Titel',
+  'description' => '',
+  'required' => true,
+  'settings' => array(
+    'text_processing' => 0,
+    'hide_label' => array(
+      'page' => false,
+      'entity' => false,
+    ),
+    'user_register_form' => false,
+    'entity_translation_sync' => false,
+  ),
+  'widget' => array(
+    'weight' => -5,
+    'type' => 'text_textfield',
+    'settings' => array(
+      'size' => 60,
+    ),
+    'module' => 'text',
+  ),
+  'display' => array(
+    'default' => array(
+      'type' => 'hidden',
+      'label' => 'above',
+      'settings' => array(
+      ),
+      'weight' => 1,
+    ),
+  ),
+  'field_name' => 'title_field',
+  'entity_type' => 'node',
+  'bundle' => 'programmpunkt',
+  'deleted' => '0',
+);
+if (field_info_instance('node', 'title_field', 'programmpunkt') === NULL) {
+  field_create_instance($instance);
+}
+
+}

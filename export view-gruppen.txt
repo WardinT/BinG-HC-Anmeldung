@@ -1,0 +1,451 @@
+$view = new view();
+$view->name = 'gruppen';
+$view->description = 'Listen der Gruppen (Chöre, Quartette, Veranstaltungen)';
+$view->tag = 'default';
+$view->base_table = 'taxonomy_term_data';
+$view->human_name = 'Gruppen';
+$view->core = 7;
+$view->api_version = '3.0';
+$view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+/* Display: Master */
+$handler = $view->new_display('default', 'Master', 'default');
+$handler->display->display_options['title'] = 'Gruppen';
+$handler->display->display_options['use_more_always'] = FALSE;
+$handler->display->display_options['use_more_text'] = 'mehr';
+$handler->display->display_options['access']['type'] = 'perm';
+$handler->display->display_options['cache']['type'] = 'none';
+$handler->display->display_options['query']['type'] = 'views_query';
+$handler->display->display_options['exposed_form']['type'] = 'basic';
+$handler->display->display_options['exposed_form']['options']['submit_button'] = 'Anwenden';
+$handler->display->display_options['exposed_form']['options']['reset_button_label'] = 'Zurücksetzen';
+$handler->display->display_options['exposed_form']['options']['exposed_sorts_label'] = 'Sortieren nach';
+$handler->display->display_options['exposed_form']['options']['sort_asc_label'] = 'Aufsteigend';
+$handler->display->display_options['exposed_form']['options']['sort_desc_label'] = 'Absteigend';
+$handler->display->display_options['pager']['type'] = 'none';
+$handler->display->display_options['style_plugin'] = 'table';
+/* Beziehung: Taxonomie-Begriff: Übergeordneter Begriff */
+$handler->display->display_options['relationships']['parent']['id'] = 'parent';
+$handler->display->display_options['relationships']['parent']['table'] = 'taxonomy_term_hierarchy';
+$handler->display->display_options['relationships']['parent']['field'] = 'parent';
+$handler->display->display_options['relationships']['parent']['label'] = 'Gruppentyp';
+$handler->display->display_options['relationships']['parent']['required'] = TRUE;
+/* Feld: Taxonomie-Begriff: Name */
+$handler->display->display_options['fields']['name']['id'] = 'name';
+$handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
+$handler->display->display_options['fields']['name']['field'] = 'name';
+$handler->display->display_options['fields']['name']['alter']['word_boundary'] = FALSE;
+$handler->display->display_options['fields']['name']['alter']['ellipsis'] = FALSE;
+$handler->display->display_options['fields']['name']['link_to_taxonomy'] = TRUE;
+/* Feld: Taxonomie-Begriff: Name */
+$handler->display->display_options['fields']['name_1']['id'] = 'name_1';
+$handler->display->display_options['fields']['name_1']['table'] = 'taxonomy_term_data';
+$handler->display->display_options['fields']['name_1']['field'] = 'name';
+$handler->display->display_options['fields']['name_1']['relationship'] = 'parent';
+$handler->display->display_options['fields']['name_1']['label'] = 'Gruppentyp';
+$handler->display->display_options['fields']['name_1']['exclude'] = TRUE;
+/* Sortierkriterien: Taxonomie-Begriff: Name */
+$handler->display->display_options['sorts']['name']['id'] = 'name';
+$handler->display->display_options['sorts']['name']['table'] = 'taxonomy_term_data';
+$handler->display->display_options['sorts']['name']['field'] = 'name';
+/* Filterkriterium: Taxonomie-Vokabular: Systemname */
+$handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
+$handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
+$handler->display->display_options['filters']['machine_name']['field'] = 'machine_name';
+$handler->display->display_options['filters']['machine_name']['value'] = array(
+  'zugriffsrechte' => 'zugriffsrechte',
+);
+$handler->display->display_options['filters']['machine_name']['group'] = 1;
+/* Filterkriterium: Taxonomie-Begriff: Begriff */
+$handler->display->display_options['filters']['tid']['id'] = 'tid';
+$handler->display->display_options['filters']['tid']['table'] = 'taxonomy_term_data';
+$handler->display->display_options['filters']['tid']['field'] = 'tid';
+$handler->display->display_options['filters']['tid']['relationship'] = 'parent';
+$handler->display->display_options['filters']['tid']['value'] = array(
+  96 => '96',
+);
+$handler->display->display_options['filters']['tid']['expose']['operator_id'] = 'tid_op';
+$handler->display->display_options['filters']['tid']['expose']['label'] = 'Begriff';
+$handler->display->display_options['filters']['tid']['expose']['operator'] = 'tid_op';
+$handler->display->display_options['filters']['tid']['expose']['identifier'] = 'tid';
+$handler->display->display_options['filters']['tid']['expose']['remember_roles'] = array(
+  2 => '2',
+  1 => 0,
+  4 => 0,
+  3 => 0,
+  8 => 0,
+  9 => 0,
+  10 => 0,
+  11 => 0,
+);
+$handler->display->display_options['filters']['tid']['type'] = 'select';
+$handler->display->display_options['filters']['tid']['vocabulary'] = 'zugriffsrechte';
+$handler->display->display_options['filters']['tid']['hierarchy'] = 1;
+
+/* Display: Chöre */
+$handler = $view->new_display('page', 'Chöre', 'page');
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filterkriterium: Taxonomie-Vokabular: Systemname */
+$handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
+$handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
+$handler->display->display_options['filters']['machine_name']['field'] = 'machine_name';
+$handler->display->display_options['filters']['machine_name']['value'] = array(
+  'zugriffsrechte' => 'zugriffsrechte',
+);
+$handler->display->display_options['filters']['machine_name']['group'] = 1;
+/* Filterkriterium: Taxonomie-Begriff: Begriff */
+$handler->display->display_options['filters']['tid']['id'] = 'tid';
+$handler->display->display_options['filters']['tid']['table'] = 'taxonomy_term_data';
+$handler->display->display_options['filters']['tid']['field'] = 'tid';
+$handler->display->display_options['filters']['tid']['relationship'] = 'parent';
+$handler->display->display_options['filters']['tid']['value'] = array(
+  26 => '26',
+);
+$handler->display->display_options['filters']['tid']['type'] = 'select';
+$handler->display->display_options['filters']['tid']['vocabulary'] = 'zugriffsrechte';
+$handler->display->display_options['filters']['tid']['hierarchy'] = 1;
+$handler->display->display_options['path'] = 'choere';
+
+/* Display: Quartette */
+$handler = $view->new_display('page', 'Quartette', 'page_1');
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filterkriterium: Taxonomie-Vokabular: Systemname */
+$handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
+$handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
+$handler->display->display_options['filters']['machine_name']['field'] = 'machine_name';
+$handler->display->display_options['filters']['machine_name']['value'] = array(
+  'zugriffsrechte' => 'zugriffsrechte',
+);
+$handler->display->display_options['filters']['machine_name']['group'] = 1;
+/* Filterkriterium: Taxonomie-Begriff: Begriff */
+$handler->display->display_options['filters']['tid']['id'] = 'tid';
+$handler->display->display_options['filters']['tid']['table'] = 'taxonomy_term_data';
+$handler->display->display_options['filters']['tid']['field'] = 'tid';
+$handler->display->display_options['filters']['tid']['relationship'] = 'parent';
+$handler->display->display_options['filters']['tid']['value'] = array(
+  50 => '50',
+);
+$handler->display->display_options['filters']['tid']['type'] = 'select';
+$handler->display->display_options['filters']['tid']['vocabulary'] = 'zugriffsrechte';
+$handler->display->display_options['filters']['tid']['hierarchy'] = 1;
+$handler->display->display_options['path'] = 'quartette';
+
+/* Display: Veranstaltungen */
+$handler = $view->new_display('page', 'Veranstaltungen', 'page_2');
+$handler->display->display_options['path'] = 'veranstaltungen';
+
+/* Display: Gruppen */
+$handler = $view->new_display('page', 'Gruppen', 'page_3');
+$handler->display->display_options['defaults']['group_by'] = FALSE;
+$handler->display->display_options['group_by'] = TRUE;
+$handler->display->display_options['defaults']['style_plugin'] = FALSE;
+$handler->display->display_options['style_plugin'] = 'table';
+$handler->display->display_options['style_options']['columns'] = array(
+  'views_send' => 'views_send',
+  'name_i18n' => 'name_i18n',
+  'name_i18n_1' => 'name_i18n_1',
+  'mail' => 'mail',
+  'name_2' => 'name_2',
+  'name_3' => 'name_3',
+);
+$handler->display->display_options['style_options']['default'] = '-1';
+$handler->display->display_options['style_options']['info'] = array(
+  'views_send' => array(
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'name_i18n' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'name_i18n_1' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'mail' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'name_2' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+  'name_3' => array(
+    'sortable' => 0,
+    'default_sort_order' => 'asc',
+    'align' => '',
+    'separator' => '',
+    'empty_column' => 0,
+  ),
+);
+$handler->display->display_options['defaults']['style_options'] = FALSE;
+$handler->display->display_options['defaults']['row_plugin'] = FALSE;
+$handler->display->display_options['defaults']['row_options'] = FALSE;
+$handler->display->display_options['defaults']['relationships'] = FALSE;
+/* Beziehung: Taxonomie-Begriff: Übergeordneter Begriff */
+$handler->display->display_options['relationships']['parent']['id'] = 'parent';
+$handler->display->display_options['relationships']['parent']['table'] = 'taxonomy_term_hierarchy';
+$handler->display->display_options['relationships']['parent']['field'] = 'parent';
+$handler->display->display_options['relationships']['parent']['label'] = 'Gruppentyp';
+$handler->display->display_options['relationships']['parent']['required'] = TRUE;
+/* Beziehung: Taxonomie-Begriff: Benutzer die Adminrechte benutzt */
+$handler->display->display_options['relationships']['reverse_field_adminrechte_user']['id'] = 'reverse_field_adminrechte_user';
+$handler->display->display_options['relationships']['reverse_field_adminrechte_user']['table'] = 'taxonomy_term_data';
+$handler->display->display_options['relationships']['reverse_field_adminrechte_user']['field'] = 'reverse_field_adminrechte_user';
+$handler->display->display_options['relationships']['reverse_field_adminrechte_user']['label'] = 'Administratoren';
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Feld: Taxonomie-Begriff: Begriff-ID */
+$handler->display->display_options['fields']['tid']['id'] = 'tid';
+$handler->display->display_options['fields']['tid']['table'] = 'taxonomy_term_data';
+$handler->display->display_options['fields']['tid']['field'] = 'tid';
+$handler->display->display_options['fields']['tid']['label'] = 'TID';
+$handler->display->display_options['fields']['tid']['exclude'] = TRUE;
+$handler->display->display_options['fields']['tid']['separator'] = '';
+/* Feld: Taxonomie-Begriff: Name (translated) */
+$handler->display->display_options['fields']['name_i18n']['id'] = 'name_i18n';
+$handler->display->display_options['fields']['name_i18n']['table'] = 'taxonomy_term_data';
+$handler->display->display_options['fields']['name_i18n']['field'] = 'name_i18n';
+$handler->display->display_options['fields']['name_i18n']['label'] = 'Gruppe';
+/* Feld: Taxonomie-Begriff: Name (translated) */
+$handler->display->display_options['fields']['name_i18n_1']['id'] = 'name_i18n_1';
+$handler->display->display_options['fields']['name_i18n_1']['table'] = 'taxonomy_term_data';
+$handler->display->display_options['fields']['name_i18n_1']['field'] = 'name_i18n';
+$handler->display->display_options['fields']['name_i18n_1']['relationship'] = 'parent';
+$handler->display->display_options['fields']['name_i18n_1']['label'] = 'Gruppentyp';
+$handler->display->display_options['fields']['name_i18n_1']['exclude'] = TRUE;
+/* Feld: Global: Mail an Gruppe)n) senden */
+$handler->display->display_options['fields']['group_send']['id'] = 'group_send';
+$handler->display->display_options['fields']['group_send']['table'] = 'views';
+$handler->display->display_options['fields']['group_send']['field'] = 'group_send';
+/* Feld: Global: Ansicht */
+$handler->display->display_options['fields']['view']['id'] = 'view';
+$handler->display->display_options['fields']['view']['table'] = 'views';
+$handler->display->display_options['fields']['view']['field'] = 'view';
+$handler->display->display_options['fields']['view']['label'] = 'Mitglieder';
+$handler->display->display_options['fields']['view']['view'] = 'Nutzerliste';
+$handler->display->display_options['fields']['view']['display'] = 'page_1';
+$handler->display->display_options['fields']['view']['arguments'] = '[!tid]';
+/* Feld: Global: Ansicht */
+$handler->display->display_options['fields']['view_1']['id'] = 'view_1';
+$handler->display->display_options['fields']['view_1']['table'] = 'views';
+$handler->display->display_options['fields']['view_1']['field'] = 'view';
+$handler->display->display_options['fields']['view_1']['label'] = 'Administratoren';
+$handler->display->display_options['fields']['view_1']['view'] = 'Nutzerliste';
+$handler->display->display_options['fields']['view_1']['display'] = 'page';
+$handler->display->display_options['fields']['view_1']['arguments'] = '[!tid]';
+$handler->display->display_options['defaults']['sorts'] = FALSE;
+/* Sortierkriterien: Taxonomie-Begriff: Name */
+$handler->display->display_options['sorts']['name_1']['id'] = 'name_1';
+$handler->display->display_options['sorts']['name_1']['table'] = 'taxonomy_term_data';
+$handler->display->display_options['sorts']['name_1']['field'] = 'name';
+$handler->display->display_options['sorts']['name_1']['relationship'] = 'parent';
+/* Sortierkriterien: Taxonomie-Begriff: Name */
+$handler->display->display_options['sorts']['name']['id'] = 'name';
+$handler->display->display_options['sorts']['name']['table'] = 'taxonomy_term_data';
+$handler->display->display_options['sorts']['name']['field'] = 'name';
+$handler->display->display_options['defaults']['filter_groups'] = FALSE;
+$handler->display->display_options['filter_groups']['operator'] = 'OR';
+$handler->display->display_options['defaults']['filters'] = FALSE;
+/* Filterkriterium: Taxonomie-Vokabular: Systemname */
+$handler->display->display_options['filters']['machine_name']['id'] = 'machine_name';
+$handler->display->display_options['filters']['machine_name']['table'] = 'taxonomy_vocabulary';
+$handler->display->display_options['filters']['machine_name']['field'] = 'machine_name';
+$handler->display->display_options['filters']['machine_name']['value'] = array(
+  'zugriffsrechte' => 'zugriffsrechte',
+);
+$handler->display->display_options['filters']['machine_name']['group'] = 1;
+$handler->display->display_options['filters']['machine_name']['expose']['operator_id'] = 'machine_name_op';
+$handler->display->display_options['filters']['machine_name']['expose']['label'] = 'Systemname';
+$handler->display->display_options['filters']['machine_name']['expose']['operator'] = 'machine_name_op';
+$handler->display->display_options['filters']['machine_name']['expose']['identifier'] = 'machine_name';
+/* Filterkriterium: Taxonomie-Begriff: Übergeordneter Begriff */
+$handler->display->display_options['filters']['parent']['id'] = 'parent';
+$handler->display->display_options['filters']['parent']['table'] = 'taxonomy_term_hierarchy';
+$handler->display->display_options['filters']['parent']['field'] = 'parent';
+$handler->display->display_options['filters']['parent']['operator'] = '!=';
+$handler->display->display_options['filters']['parent']['value']['value'] = '0';
+$handler->display->display_options['filters']['parent']['group'] = 1;
+/* Filterkriterium: Taxonomie-Begriff: Begriff */
+$handler->display->display_options['filters']['tid']['id'] = 'tid';
+$handler->display->display_options['filters']['tid']['table'] = 'taxonomy_term_data';
+$handler->display->display_options['filters']['tid']['field'] = 'tid';
+$handler->display->display_options['filters']['tid']['relationship'] = 'parent';
+$handler->display->display_options['filters']['tid']['value'] = array(
+  26 => '26',
+  50 => '50',
+  88 => '88',
+  93 => '93',
+  96 => '96',
+);
+$handler->display->display_options['filters']['tid']['group'] = 1;
+$handler->display->display_options['filters']['tid']['exposed'] = TRUE;
+$handler->display->display_options['filters']['tid']['expose']['operator_id'] = 'tid_op';
+$handler->display->display_options['filters']['tid']['expose']['label'] = 'Gruppentyp';
+$handler->display->display_options['filters']['tid']['expose']['operator'] = 'tid_op';
+$handler->display->display_options['filters']['tid']['expose']['identifier'] = 'tid';
+$handler->display->display_options['filters']['tid']['expose']['remember_roles'] = array(
+  2 => '2',
+  1 => 0,
+  12 => 0,
+  3 => 0,
+  8 => 0,
+  9 => 0,
+  10 => 0,
+  11 => 0,
+);
+$handler->display->display_options['filters']['tid']['expose']['reduce'] = TRUE;
+$handler->display->display_options['filters']['tid']['group_info']['label'] = 'Begriff';
+$handler->display->display_options['filters']['tid']['group_info']['identifier'] = 'tid';
+$handler->display->display_options['filters']['tid']['group_info']['remember'] = FALSE;
+$handler->display->display_options['filters']['tid']['group_info']['group_items'] = array(
+  1 => array(),
+  2 => array(),
+  3 => array(),
+);
+$handler->display->display_options['filters']['tid']['type'] = 'select';
+$handler->display->display_options['filters']['tid']['vocabulary'] = 'zugriffsrechte';
+$handler->display->display_options['filters']['tid']['hierarchy'] = 1;
+/* Filterkriterium: Taxonomie-Begriff: Begriff */
+$handler->display->display_options['filters']['tid_1']['id'] = 'tid_1';
+$handler->display->display_options['filters']['tid_1']['table'] = 'taxonomy_term_data';
+$handler->display->display_options['filters']['tid_1']['field'] = 'tid';
+$handler->display->display_options['filters']['tid_1']['value'] = array(
+  27 => '27',
+  28 => '28',
+  29 => '29',
+  30 => '30',
+  32 => '32',
+  33 => '33',
+  34 => '34',
+  35 => '35',
+  136 => '136',
+  36 => '36',
+  37 => '37',
+  38 => '38',
+  217 => '217',
+  39 => '39',
+  40 => '40',
+  41 => '41',
+  42 => '42',
+  43 => '43',
+  46 => '46',
+  81 => '81',
+  47 => '47',
+  48 => '48',
+  49 => '49',
+  51 => '51',
+  53 => '53',
+  218 => '218',
+  54 => '54',
+  55 => '55',
+  56 => '56',
+  57 => '57',
+  58 => '58',
+  59 => '59',
+  148 => '148',
+  60 => '60',
+  62 => '62',
+  142 => '142',
+  198 => '198',
+  63 => '63',
+  64 => '64',
+  135 => '135',
+  65 => '65',
+  167 => '167',
+  67 => '67',
+  134 => '134',
+  69 => '69',
+  70 => '70',
+  71 => '71',
+  72 => '72',
+  176 => '176',
+  73 => '73',
+  74 => '74',
+  145 => '145',
+  75 => '75',
+  77 => '77',
+  76 => '76',
+  216 => '216',
+  78 => '78',
+  79 => '79',
+  80 => '80',
+  82 => '82',
+  83 => '83',
+  84 => '84',
+  158 => '158',
+  86 => '86',
+  130 => '130',
+  89 => '89',
+  90 => '90',
+  91 => '91',
+  92 => '92',
+  95 => '95',
+  31 => '31',
+  94 => '94',
+  97 => '97',
+  98 => '98',
+  99 => '99',
+);
+$handler->display->display_options['filters']['tid_1']['group'] = 1;
+$handler->display->display_options['filters']['tid_1']['exposed'] = TRUE;
+$handler->display->display_options['filters']['tid_1']['expose']['operator_id'] = 'tid_1_op';
+$handler->display->display_options['filters']['tid_1']['expose']['label'] = 'oder Gruppe';
+$handler->display->display_options['filters']['tid_1']['expose']['operator'] = 'tid_1_op';
+$handler->display->display_options['filters']['tid_1']['expose']['identifier'] = 'tid_1';
+$handler->display->display_options['filters']['tid_1']['expose']['remember_roles'] = array(
+  2 => '2',
+  1 => 0,
+  12 => 0,
+  3 => 0,
+  8 => 0,
+  9 => 0,
+  10 => 0,
+  11 => 0,
+  13 => 0,
+);
+$handler->display->display_options['filters']['tid_1']['expose']['reduce'] = TRUE;
+$handler->display->display_options['filters']['tid_1']['type'] = 'select';
+$handler->display->display_options['filters']['tid_1']['vocabulary'] = 'zugriffsrechte';
+$handler->display->display_options['filters']['tid_1']['hierarchy'] = 1;
+$handler->display->display_options['path'] = 'gruppen';
+
+/* Display: Webform Options */
+$handler = $view->new_display('webform_select', 'Webform Options', 'webform_select_1');
+$handler->display->display_options['defaults']['title'] = FALSE;
+$handler->display->display_options['title'] = 'Quartettliste';
+$handler->display->display_options['defaults']['link_display'] = FALSE;
+$handler->display->display_options['link_display'] = 'page_1';
+$handler->display->display_options['defaults']['access'] = FALSE;
+$handler->display->display_options['access']['type'] = 'none';
+$handler->display->display_options['pager']['type'] = 'none';
+$handler->display->display_options['pager']['options']['offset'] = '0';
+$handler->display->display_options['defaults']['style_plugin'] = FALSE;
+$handler->display->display_options['style_plugin'] = 'webform_views_select_style';
+$handler->display->display_options['style_options']['mapping']['webform_select_key'] = 'name';
+$handler->display->display_options['style_options']['mapping']['webform_select_value'] = 'name';
+$handler->display->display_options['defaults']['style_options'] = FALSE;
+$handler->display->display_options['defaults']['row_plugin'] = FALSE;
+$handler->display->display_options['defaults']['row_options'] = FALSE;
+$handler->display->display_options['defaults']['fields'] = FALSE;
+/* Feld: Taxonomie-Begriff: Name */
+$handler->display->display_options['fields']['name']['id'] = 'name';
+$handler->display->display_options['fields']['name']['table'] = 'taxonomy_term_data';
+$handler->display->display_options['fields']['name']['field'] = 'name';
+$handler->display->display_options['fields']['name']['alter']['word_boundary'] = FALSE;
+$handler->display->display_options['fields']['name']['alter']['ellipsis'] = FALSE;
+$handler->display->display_options['fields']['name']['link_to_taxonomy'] = TRUE;

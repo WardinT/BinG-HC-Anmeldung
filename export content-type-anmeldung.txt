@@ -1,0 +1,1063 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function MY_MODULE_install() {
+  MY_MODULE_create_type();
+  MY_MODULE_create_fields();
+  MY_MODULE_create_instances();
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function MY_MODULE_uninstall() {
+  field_attach_delete_bundle('node', 'anmeldung');
+  node_type_delete('anmeldung');
+}
+
+/**
+ * Set up the content type.
+ */
+function MY_MODULE_create_type() {
+  // Anmeldung content type
+$bundle = array(
+  'type' => 'anmeldung',
+  'name' => 'Anmeldung',
+  'base' => 'node_content',
+  'description' => '',
+  'custom' => '1',
+);
+
+$bundle = node_type_set_defaults($bundle);
+node_type_save($bundle);
+node_add_body_field($bundle);
+
+}
+
+/**
+ * Create the fields
+ */
+function MY_MODULE_create_fields() {
+// field_image field
+$field = array(
+  'settings' => array(
+    'uri_scheme' => 'public',
+    'default_image' => 0,
+    'entity_translation_sync' => array(
+      0 => 'fid',
+    ),
+  ),
+  'field_name' => 'field_image',
+  'type' => 'image',
+  'cardinality' => '-1',
+);
+if (field_info_field($field['field_name']) === NULL) {
+  field_create_field($field);
+}
+
+// title_field field
+$field = array(
+  'settings' => array(
+    'entity_translation_sync' => false,
+    'max_length' => 255,
+  ),
+  'field_name' => 'title_field',
+  'type' => 'text',
+  'cardinality' => '1',
+);
+if (field_info_field($field['field_name']) === NULL) {
+  field_create_field($field);
+}
+
+// field_grundpreis field
+$field = array(
+  'settings' => array(
+    'entity_translation_sync' => false,
+    'options_list_limit' => '',
+  ),
+  'field_name' => 'field_grundpreis',
+  'type' => 'commerce_product_reference',
+  'cardinality' => '1',
+);
+if (field_info_field($field['field_name']) === NULL) {
+  field_create_field($field);
+}
+
+// field_grundpreis_yc field
+$field = array(
+  'settings' => array(
+    'entity_translation_sync' => false,
+    'options_list_limit' => '',
+  ),
+  'field_name' => 'field_grundpreis_yc',
+  'type' => 'commerce_product_reference',
+  'cardinality' => '1',
+);
+if (field_info_field($field['field_name']) === NULL) {
+  field_create_field($field);
+}
+
+// field_grundpreis_unterkunft field
+$field = array(
+  'settings' => array(
+    'entity_translation_sync' => false,
+    'options_list_limit' => '',
+  ),
+  'field_name' => 'field_grundpreis_unterkunft',
+  'type' => 'commerce_product_reference',
+  'cardinality' => '1',
+);
+if (field_info_field($field['field_name']) === NULL) {
+  field_create_field($field);
+}
+
+// field_aufpreis_nichtmitglieder field
+$field = array(
+  'settings' => array(
+    'entity_translation_sync' => false,
+    'options_list_limit' => '',
+  ),
+  'field_name' => 'field_aufpreis_nichtmitglieder',
+  'type' => 'commerce_product_reference',
+  'cardinality' => '1',
+);
+if (field_info_field($field['field_name']) === NULL) {
+  field_create_field($field);
+}
+
+// field_aufpreis_quartette field
+$field = array(
+  'settings' => array(
+    'entity_translation_sync' => false,
+    'options_list_limit' => '',
+  ),
+  'field_name' => 'field_aufpreis_quartette',
+  'type' => 'commerce_product_reference',
+  'cardinality' => '1',
+);
+if (field_info_field($field['field_name']) === NULL) {
+  field_create_field($field);
+}
+
+// field_aufpreis_yc_aeltere field
+$field = array(
+  'settings' => array(
+    'entity_translation_sync' => false,
+    'options_list_limit' => '',
+  ),
+  'field_name' => 'field_aufpreis_yc_aeltere',
+  'type' => 'commerce_product_reference',
+  'cardinality' => '1',
+);
+if (field_info_field($field['field_name']) === NULL) {
+  field_create_field($field);
+}
+
+// field_grenze_yc field
+$field = array(
+  'settings' => array(
+    'entity_translation_sync' => false,
+  ),
+  'field_name' => 'field_grenze_yc',
+  'type' => 'number_integer',
+  'cardinality' => '1',
+);
+if (field_info_field($field['field_name']) === NULL) {
+  field_create_field($field);
+}
+
+// field_grenze_yc_aeltere field
+$field = array(
+  'settings' => array(
+    'entity_translation_sync' => false,
+  ),
+  'field_name' => 'field_grenze_yc_aeltere',
+  'type' => 'number_integer',
+  'cardinality' => '1',
+);
+if (field_info_field($field['field_name']) === NULL) {
+  field_create_field($field);
+}
+
+// field_aufpreis_doppelzimmer field
+$field = array(
+  'settings' => array(
+    'options_list_limit' => '',
+    'entity_translation_sync' => false,
+  ),
+  'field_name' => 'field_aufpreis_doppelzimmer',
+  'type' => 'commerce_product_reference',
+  'cardinality' => '1',
+);
+if (field_info_field($field['field_name']) === NULL) {
+  field_create_field($field);
+}
+
+// field_aufpreis_einzelzimmer field
+$field = array(
+  'settings' => array(
+    'options_list_limit' => '',
+    'entity_translation_sync' => false,
+  ),
+  'field_name' => 'field_aufpreis_einzelzimmer',
+  'type' => 'commerce_product_reference',
+  'cardinality' => '1',
+);
+if (field_info_field($field['field_name']) === NULL) {
+  field_create_field($field);
+}
+
+// zugriffsrechte taxonomy
+$vocabulary = (object) array(
+  'name' => 'Zugriffsrechte',
+  'machine_name' => 'zugriffsrechte',
+  'description' => '',
+  'module' => 'taxonomy',
+  'language' => 'und',
+  'i18n_mode' => '1',
+  'base_i18n_mode' => '1',
+  'base_language' => 'und',
+);
+if (taxonomy_vocabulary_machine_name_load($vocabulary->machine_name) === FALSE) {
+  taxonomy_vocabulary_save($vocabulary);
+}
+
+// field_veranstaltung field
+$field = array(
+  'settings' => array(
+    'allowed_values' => array(
+      0 => array(
+        'vocabulary' => 'zugriffsrechte',
+        'parent' => '0',
+      ),
+    ),
+    'options_list_callback' => 'i18n_taxonomy_allowed_values',
+    'entity_translation_sync' => false,
+    'abt_map' => array(
+      'ctrl_view_access' => 0,
+      'ctrl_update_access' => 0,
+      'ctrl_delete_access' => 0,
+    ),
+  ),
+  'field_name' => 'field_veranstaltung',
+  'type' => 'taxonomy_term_reference',
+  'cardinality' => '1',
+);
+if (field_info_field($field['field_name']) === NULL) {
+  field_create_field($field);
+}
+
+// field_anlagen field
+$field = array(
+  'settings' => array(
+    'display_default' => 0,
+    'display_field' => 0,
+    'entity_translation_sync' => array(
+      0 => 'fid',
+    ),
+    'uri_scheme' => 'private',
+  ),
+  'field_name' => 'field_anlagen',
+  'type' => 'file',
+  'cardinality' => '-1',
+);
+if (field_info_field($field['field_name']) === NULL) {
+  field_create_field($field);
+}
+
+// field_veranstaltung_gruppe field
+$field = array(
+  'settings' => array(
+    'target_type' => 'group',
+    'handler' => 'base',
+    'handler_settings' => array(
+      'target_bundles' => array(
+        'veranstaltungen' => 'veranstaltungen',
+      ),
+      'sort' => array(
+        'type' => 'property',
+        'property' => 'title',
+        'direction' => 'ASC',
+      ),
+      'behaviors' => array(
+        'views-select-list' => array(
+          'status' => 0,
+        ),
+      ),
+    ),
+    'entity_translation_sync' => false,
+  ),
+  'field_name' => 'field_veranstaltung_gruppe',
+  'type' => 'entityreference',
+  'cardinality' => '1',
+);
+if (field_info_field($field['field_name']) === NULL) {
+  field_create_field($field);
+}
+
+
+}
+
+/**
+ * Create the field instances
+ */
+function MY_MODULE_create_instances() {
+// field_image instance
+$instance = array(
+  'label' => 'Bild(er)',
+  'widget' => array(
+    'weight' => '4',
+    'type' => 'media_generic',
+    'module' => 'media',
+    'active' => 1,
+    'settings' => array(
+      'browser_plugins' => array(
+        'upload' => 0,
+        'media_default--media_browser_1' => 0,
+        'media_default--media_browser_my_files' => 0,
+      ),
+      'allowed_types' => array(
+        'image' => 'image',
+        'document' => 0,
+        'video' => 0,
+        'audio' => 0,
+      ),
+      'allowed_schemes' => array(
+        'public' => 'public',
+        'private' => 0,
+      ),
+    ),
+  ),
+  'settings' => array(
+    'file_directory' => '',
+    'file_extensions' => 'png gif jpg jpeg',
+    'max_filesize' => '',
+    'max_resolution' => '',
+    'min_resolution' => '',
+    'alt_field' => 0,
+    'title_field' => 0,
+    'default_image' => 0,
+    'entity_translation_sync' => 0,
+    'user_register_form' => false,
+  ),
+  'display' => array(
+    'default' => array(
+      'label' => 'above',
+      'type' => 'image',
+      'weight' => '1',
+      'settings' => array(
+        'image_style' => '',
+        'image_link' => '',
+      ),
+      'module' => 'image',
+    ),
+  ),
+  'required' => 0,
+  'description' => '',
+  'default_value' => array(
+  ),
+  'field_name' => 'field_image',
+  'entity_type' => 'node',
+  'bundle' => 'anmeldung',
+  'deleted' => '0',
+);
+if (field_info_instance('node', 'field_image', 'anmeldung') === NULL) {
+  field_create_instance($instance);
+}
+// title_field instance
+$instance = array(
+  'default_value' => NULL,
+  'description' => '',
+  'display' => array(
+    'default' => array(
+      'label' => 'above',
+      'type' => 'hidden',
+      'weight' => '8',
+      'settings' => array(
+      ),
+    ),
+    'teaser' => array(
+      'label' => 'above',
+      'settings' => array(
+      ),
+      'type' => 'hidden',
+      'weight' => 0,
+    ),
+  ),
+  'label' => 'Titel',
+  'required' => true,
+  'settings' => array(
+    'entity_translation_sync' => false,
+    'hide_label' => array(
+      'entity' => false,
+      'page' => false,
+    ),
+    'text_processing' => 0,
+    'user_register_form' => false,
+  ),
+  'widget' => array(
+    'module' => 'text',
+    'settings' => array(
+      'size' => 60,
+    ),
+    'type' => 'text_textfield',
+    'weight' => '0',
+  ),
+  'field_name' => 'title_field',
+  'entity_type' => 'node',
+  'bundle' => 'anmeldung',
+  'deleted' => '0',
+);
+if (field_info_instance('node', 'title_field', 'anmeldung') === NULL) {
+  field_create_instance($instance);
+}
+// field_grundpreis instance
+$instance = array(
+  'default_value' => NULL,
+  'description' => '',
+  'display' => array(
+    'default' => array(
+      'label' => 'above',
+      'type' => 'hidden',
+      'weight' => '9',
+      'settings' => array(
+      ),
+    ),
+    'teaser' => array(
+      'label' => 'above',
+      'settings' => array(
+      ),
+      'type' => 'hidden',
+      'weight' => 0,
+    ),
+  ),
+  'label' => 'Grundpreis',
+  'required' => 0,
+  'settings' => array(
+    'entity_translation_sync' => false,
+    'field_injection' => 1,
+    'referenceable_types' => array(
+      'kleidung' => 0,
+      'medien' => 0,
+      'product' => 0,
+      'ticket' => 'ticket',
+    ),
+    'user_register_form' => false,
+  ),
+  'widget' => array(
+    'active' => 1,
+    'module' => 'commerce_product_reference',
+    'settings' => array(
+      'autocomplete_match' => 'contains',
+      'autocomplete_path' => 'commerce_product/autocomplete',
+      'size' => 60,
+    ),
+    'type' => 'commerce_product_reference_autocomplete',
+    'weight' => '7',
+  ),
+  'field_name' => 'field_grundpreis',
+  'entity_type' => 'node',
+  'bundle' => 'anmeldung',
+  'deleted' => '0',
+);
+if (field_info_instance('node', 'field_grundpreis', 'anmeldung') === NULL) {
+  field_create_instance($instance);
+}
+// field_grundpreis_yc instance
+$instance = array(
+  'default_value' => NULL,
+  'description' => '',
+  'display' => array(
+    'default' => array(
+      'label' => 'above',
+      'type' => 'hidden',
+      'weight' => '10',
+      'settings' => array(
+      ),
+    ),
+    'teaser' => array(
+      'label' => 'above',
+      'settings' => array(
+      ),
+      'type' => 'hidden',
+      'weight' => 0,
+    ),
+  ),
+  'label' => 'Grundpreis YC',
+  'required' => 0,
+  'settings' => array(
+    'entity_translation_sync' => false,
+    'field_injection' => 1,
+    'referenceable_types' => array(
+      'kleidung' => 0,
+      'medien' => 0,
+      'product' => 0,
+      'ticket' => 'ticket',
+    ),
+    'user_register_form' => false,
+  ),
+  'widget' => array(
+    'active' => 1,
+    'module' => 'commerce_product_reference',
+    'settings' => array(
+      'autocomplete_match' => 'contains',
+      'autocomplete_path' => 'commerce_product/autocomplete',
+      'size' => 60,
+    ),
+    'type' => 'commerce_product_reference_autocomplete',
+    'weight' => '8',
+  ),
+  'field_name' => 'field_grundpreis_yc',
+  'entity_type' => 'node',
+  'bundle' => 'anmeldung',
+  'deleted' => '0',
+);
+if (field_info_instance('node', 'field_grundpreis_yc', 'anmeldung') === NULL) {
+  field_create_instance($instance);
+}
+// field_grundpreis_unterkunft instance
+$instance = array(
+  'default_value' => NULL,
+  'description' => '',
+  'display' => array(
+    'default' => array(
+      'label' => 'above',
+      'type' => 'hidden',
+      'weight' => '12',
+      'settings' => array(
+      ),
+    ),
+    'teaser' => array(
+      'label' => 'above',
+      'settings' => array(
+      ),
+      'type' => 'hidden',
+      'weight' => 0,
+    ),
+  ),
+  'label' => 'Grundpreis ext. Unterkunft',
+  'required' => 0,
+  'settings' => array(
+    'entity_translation_sync' => false,
+    'field_injection' => 1,
+    'referenceable_types' => array(
+      'kleidung' => 0,
+      'medien' => 0,
+      'product' => 0,
+      'ticket' => 'ticket',
+    ),
+    'user_register_form' => false,
+  ),
+  'widget' => array(
+    'active' => 1,
+    'module' => 'commerce_product_reference',
+    'settings' => array(
+      'autocomplete_match' => 'contains',
+      'autocomplete_path' => 'commerce_product/autocomplete',
+      'size' => 60,
+    ),
+    'type' => 'commerce_product_reference_autocomplete',
+    'weight' => '9',
+  ),
+  'field_name' => 'field_grundpreis_unterkunft',
+  'entity_type' => 'node',
+  'bundle' => 'anmeldung',
+  'deleted' => '0',
+);
+if (field_info_instance('node', 'field_grundpreis_unterkunft', 'anmeldung') === NULL) {
+  field_create_instance($instance);
+}
+// field_aufpreis_nichtmitglieder instance
+$instance = array(
+  'default_value' => NULL,
+  'description' => '',
+  'display' => array(
+    'default' => array(
+      'label' => 'above',
+      'type' => 'hidden',
+      'weight' => '13',
+      'settings' => array(
+      ),
+    ),
+    'teaser' => array(
+      'label' => 'above',
+      'settings' => array(
+      ),
+      'type' => 'hidden',
+      'weight' => 0,
+    ),
+  ),
+  'label' => 'Aufpreis Nicht-Mitglieder',
+  'required' => 0,
+  'settings' => array(
+    'entity_translation_sync' => false,
+    'field_injection' => 1,
+    'referenceable_types' => array(
+      'kleidung' => 0,
+      'medien' => 0,
+      'product' => 0,
+      'ticket' => 'ticket',
+    ),
+    'user_register_form' => false,
+  ),
+  'widget' => array(
+    'active' => 1,
+    'module' => 'commerce_product_reference',
+    'settings' => array(
+      'autocomplete_match' => 'contains',
+      'autocomplete_path' => 'commerce_product/autocomplete',
+      'size' => 60,
+    ),
+    'type' => 'commerce_product_reference_autocomplete',
+    'weight' => '12',
+  ),
+  'field_name' => 'field_aufpreis_nichtmitglieder',
+  'entity_type' => 'node',
+  'bundle' => 'anmeldung',
+  'deleted' => '0',
+);
+if (field_info_instance('node', 'field_aufpreis_nichtmitglieder', 'anmeldung') === NULL) {
+  field_create_instance($instance);
+}
+// field_aufpreis_quartette instance
+$instance = array(
+  'default_value' => NULL,
+  'description' => '',
+  'display' => array(
+    'default' => array(
+      'label' => 'above',
+      'type' => 'hidden',
+      'weight' => '14',
+      'settings' => array(
+      ),
+    ),
+    'teaser' => array(
+      'label' => 'above',
+      'settings' => array(
+      ),
+      'type' => 'hidden',
+      'weight' => 0,
+    ),
+  ),
+  'label' => 'Aufpreis mehrere Quartette',
+  'required' => 0,
+  'settings' => array(
+    'entity_translation_sync' => false,
+    'field_injection' => 1,
+    'referenceable_types' => array(
+      'kleidung' => 0,
+      'medien' => 0,
+      'product' => 0,
+      'ticket' => 'ticket',
+    ),
+    'user_register_form' => false,
+  ),
+  'widget' => array(
+    'active' => 1,
+    'module' => 'commerce_product_reference',
+    'settings' => array(
+      'autocomplete_match' => 'contains',
+      'autocomplete_path' => 'commerce_product/autocomplete',
+      'size' => 60,
+    ),
+    'type' => 'commerce_product_reference_autocomplete',
+    'weight' => '13',
+  ),
+  'field_name' => 'field_aufpreis_quartette',
+  'entity_type' => 'node',
+  'bundle' => 'anmeldung',
+  'deleted' => '0',
+);
+if (field_info_instance('node', 'field_aufpreis_quartette', 'anmeldung') === NULL) {
+  field_create_instance($instance);
+}
+// field_aufpreis_yc_aeltere instance
+$instance = array(
+  'default_value' => NULL,
+  'description' => '',
+  'display' => array(
+    'default' => array(
+      'label' => 'above',
+      'type' => 'hidden',
+      'weight' => '15',
+      'settings' => array(
+      ),
+    ),
+    'teaser' => array(
+      'label' => 'above',
+      'settings' => array(
+      ),
+      'type' => 'hidden',
+      'weight' => 0,
+    ),
+  ),
+  'label' => 'Aufpreis ältere YC-Teilnehmer',
+  'required' => 0,
+  'settings' => array(
+    'entity_translation_sync' => false,
+    'field_injection' => 1,
+    'referenceable_types' => array(
+      'kleidung' => 0,
+      'medien' => 0,
+      'product' => 0,
+      'ticket' => 'ticket',
+    ),
+    'user_register_form' => false,
+  ),
+  'widget' => array(
+    'active' => 1,
+    'module' => 'commerce_product_reference',
+    'settings' => array(
+      'autocomplete_match' => 'contains',
+      'autocomplete_path' => 'commerce_product/autocomplete',
+      'size' => 60,
+    ),
+    'type' => 'commerce_product_reference_autocomplete',
+    'weight' => '14',
+  ),
+  'field_name' => 'field_aufpreis_yc_aeltere',
+  'entity_type' => 'node',
+  'bundle' => 'anmeldung',
+  'deleted' => '0',
+);
+if (field_info_instance('node', 'field_aufpreis_yc_aeltere', 'anmeldung') === NULL) {
+  field_create_instance($instance);
+}
+// field_grenze_yc instance
+$instance = array(
+  'default_value' => NULL,
+  'description' => '',
+  'display' => array(
+    'default' => array(
+      'label' => 'above',
+      'type' => 'hidden',
+      'weight' => '16',
+      'settings' => array(
+      ),
+    ),
+    'teaser' => array(
+      'label' => 'above',
+      'settings' => array(
+      ),
+      'type' => 'hidden',
+      'weight' => 0,
+    ),
+  ),
+  'label' => 'Altersgrenze YC-Teilnahme',
+  'required' => 0,
+  'settings' => array(
+    'entity_translation_sync' => false,
+    'max' => '',
+    'min' => '',
+    'prefix' => '',
+    'suffix' => '',
+    'user_register_form' => false,
+  ),
+  'widget' => array(
+    'active' => 0,
+    'module' => 'number',
+    'settings' => array(
+    ),
+    'type' => 'number',
+    'weight' => '15',
+  ),
+  'field_name' => 'field_grenze_yc',
+  'entity_type' => 'node',
+  'bundle' => 'anmeldung',
+  'deleted' => '0',
+);
+if (field_info_instance('node', 'field_grenze_yc', 'anmeldung') === NULL) {
+  field_create_instance($instance);
+}
+// field_grenze_yc_aeltere instance
+$instance = array(
+  'default_value' => NULL,
+  'description' => '',
+  'display' => array(
+    'default' => array(
+      'label' => 'above',
+      'type' => 'hidden',
+      'weight' => '17',
+      'settings' => array(
+      ),
+    ),
+    'teaser' => array(
+      'label' => 'above',
+      'settings' => array(
+      ),
+      'type' => 'hidden',
+      'weight' => 0,
+    ),
+  ),
+  'label' => 'Altersgrenze ältere YC-Teilnehmer',
+  'required' => 0,
+  'settings' => array(
+    'entity_translation_sync' => false,
+    'max' => '',
+    'min' => '',
+    'prefix' => '',
+    'suffix' => '',
+    'user_register_form' => false,
+  ),
+  'widget' => array(
+    'active' => 0,
+    'module' => 'number',
+    'settings' => array(
+    ),
+    'type' => 'number',
+    'weight' => '16',
+  ),
+  'field_name' => 'field_grenze_yc_aeltere',
+  'entity_type' => 'node',
+  'bundle' => 'anmeldung',
+  'deleted' => '0',
+);
+if (field_info_instance('node', 'field_grenze_yc_aeltere', 'anmeldung') === NULL) {
+  field_create_instance($instance);
+}
+// field_aufpreis_doppelzimmer instance
+$instance = array(
+  'label' => 'Aufpreis Doppelzimmer',
+  'widget' => array(
+    'weight' => '10',
+    'type' => 'commerce_product_reference_autocomplete',
+    'module' => 'commerce_product_reference',
+    'active' => 1,
+    'settings' => array(
+      'fields' => array(
+      ),
+      'type_settings' => array(
+        'allow_new' => 1,
+        'allow_existing' => 0,
+        'match_operator' => 'CONTAINS',
+        'allow_clone' => 0,
+        'delete_references' => 0,
+        'override_labels' => 0,
+        'label_singular' => 'Produkt',
+        'label_plural' => 'Produkte',
+        'autogenerate_title' => 0,
+      ),
+      'autocomplete_match' => 'contains',
+      'size' => 60,
+      'autocomplete_path' => 'commerce_product/autocomplete',
+    ),
+  ),
+  'settings' => array(
+    'field_injection' => 1,
+    'referenceable_types' => array(
+      'ticket' => 'ticket',
+      'kleidung' => 0,
+      'medien' => 0,
+      'product' => 0,
+    ),
+    'user_register_form' => false,
+    'entity_translation_sync' => false,
+  ),
+  'display' => array(
+    'default' => array(
+      'label' => 'above',
+      'type' => 'hidden',
+      'weight' => '18',
+      'settings' => array(
+      ),
+    ),
+  ),
+  'required' => 0,
+  'description' => '',
+  'default_value' => array(
+  ),
+  'field_name' => 'field_aufpreis_doppelzimmer',
+  'entity_type' => 'node',
+  'bundle' => 'anmeldung',
+  'deleted' => '0',
+);
+if (field_info_instance('node', 'field_aufpreis_doppelzimmer', 'anmeldung') === NULL) {
+  field_create_instance($instance);
+}
+// field_aufpreis_einzelzimmer instance
+$instance = array(
+  'label' => 'Aufpreis Einzelzimmer',
+  'widget' => array(
+    'weight' => '11',
+    'type' => 'commerce_product_reference_autocomplete',
+    'module' => 'commerce_product_reference',
+    'active' => 1,
+    'settings' => array(
+      'autocomplete_match' => 'contains',
+      'size' => '60',
+      'autocomplete_path' => 'commerce_product/autocomplete',
+    ),
+  ),
+  'settings' => array(
+    'field_injection' => 1,
+    'referenceable_types' => array(
+      'ticket' => 'ticket',
+      'kleidung' => 0,
+      'medien' => 0,
+      'product' => 0,
+    ),
+    'user_register_form' => false,
+    'entity_translation_sync' => false,
+  ),
+  'display' => array(
+    'default' => array(
+      'label' => 'above',
+      'type' => 'hidden',
+      'weight' => '19',
+      'settings' => array(
+      ),
+    ),
+  ),
+  'required' => 0,
+  'description' => '',
+  'default_value' => NULL,
+  'field_name' => 'field_aufpreis_einzelzimmer',
+  'entity_type' => 'node',
+  'bundle' => 'anmeldung',
+  'deleted' => '0',
+);
+if (field_info_instance('node', 'field_aufpreis_einzelzimmer', 'anmeldung') === NULL) {
+  field_create_instance($instance);
+}
+// field_veranstaltung instance
+$instance = array(
+  'label' => 'Veranstaltung (Taxonomie)',
+  'widget' => array(
+    'weight' => '6',
+    'type' => 'options_select',
+    'module' => 'options',
+    'active' => 1,
+    'settings' => array(
+    ),
+  ),
+  'settings' => array(
+    'user_register_form' => false,
+    'entity_translation_sync' => false,
+  ),
+  'display' => array(
+    'default' => array(
+      'label' => 'above',
+      'type' => 'hidden',
+      'weight' => '20',
+      'settings' => array(
+      ),
+    ),
+  ),
+  'required' => 1,
+  'description' => '',
+  'default_value' => array(
+    0 => array(
+      'tid' => '96',
+    ),
+  ),
+  'field_name' => 'field_veranstaltung',
+  'entity_type' => 'node',
+  'bundle' => 'anmeldung',
+  'deleted' => '0',
+);
+if (field_info_instance('node', 'field_veranstaltung', 'anmeldung') === NULL) {
+  field_create_instance($instance);
+}
+// field_anlagen instance
+$instance = array(
+  'label' => 'Anlage(n)',
+  'widget' => array(
+    'weight' => '5',
+    'type' => 'media_generic',
+    'module' => 'media',
+    'active' => 1,
+    'settings' => array(
+      'browser_plugins' => array(
+        'upload' => 0,
+        'media_default--media_browser_1' => 0,
+        'media_default--media_browser_my_files' => 0,
+      ),
+      'allowed_types' => array(
+        'document' => 'document',
+        'image' => 0,
+        'video' => 0,
+        'audio' => 0,
+      ),
+      'allowed_schemes' => array(
+        'public' => 0,
+        'private' => 0,
+      ),
+    ),
+  ),
+  'settings' => array(
+    'file_directory' => '',
+    'file_extensions' => 'txt doc docx odt pdf',
+    'max_filesize' => '',
+    'description_field' => 0,
+    'entity_translation_sync' => 0,
+    'user_register_form' => false,
+  ),
+  'display' => array(
+    'default' => array(
+      'label' => 'hidden',
+      'type' => 'file_download_link',
+      'weight' => '2',
+      'settings' => array(
+        'text' => 'Download [file:name]',
+      ),
+      'module' => 'file_entity',
+    ),
+  ),
+  'required' => 0,
+  'description' => '',
+  'field_name' => 'field_anlagen',
+  'entity_type' => 'node',
+  'bundle' => 'anmeldung',
+  'deleted' => '0',
+);
+if (field_info_instance('node', 'field_anlagen', 'anmeldung') === NULL) {
+  field_create_instance($instance);
+}
+// field_veranstaltung_gruppe instance
+$instance = array(
+  'label' => 'Veranstaltung (Gruppe)',
+  'widget' => array(
+    'weight' => '6',
+    'type' => 'options_select',
+    'module' => 'options',
+    'active' => 1,
+    'settings' => array(
+    ),
+  ),
+  'settings' => array(
+    'behaviors' => array(
+      'prepopulate' => array(
+        'status' => 0,
+      ),
+    ),
+    'user_register_form' => false,
+    'entity_translation_sync' => false,
+  ),
+  'display' => array(
+    'default' => array(
+      'label' => 'above',
+      'type' => 'entityreference_label',
+      'settings' => array(
+        'link' => false,
+        'bypass_access' => false,
+      ),
+      'module' => 'entityreference',
+      'weight' => 21,
+    ),
+  ),
+  'required' => 1,
+  'description' => '',
+  'default_value' => NULL,
+  'default_value_function' => '',
+  'field_name' => 'field_veranstaltung_gruppe',
+  'entity_type' => 'node',
+  'bundle' => 'anmeldung',
+  'deleted' => '0',
+);
+if (field_info_instance('node', 'field_veranstaltung_gruppe', 'anmeldung') === NULL) {
+  field_create_instance($instance);
+}
+
+}

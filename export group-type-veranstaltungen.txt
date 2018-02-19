@@ -1,0 +1,11 @@
+{
+  "name" : "veranstaltungen",
+  "label" : "Veranstaltungen",
+  "anonymous_permissions" : [],
+  "outsider_permissions" : [],
+  "member_permissions" : [],
+  "config" : [],
+  "weight" : "4",
+  "rdf_mapping" : [],
+  "roles" : []
+}
